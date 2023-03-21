@@ -1,17 +1,14 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:profileactivity/UI/home.dart';
+import 'package:profileactivity/Authentication/auth.dart';
 
 import 'Models/user_pref.dart';
 import 'UI/mode.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  await Firebase.initializeApp();
 
   runApp(const MyApp());
 }
@@ -31,7 +28,7 @@ class MyApp extends StatelessWidget {
         builder: (context) => const MaterialApp(
           debugShowCheckedModeBanner: false,
           title: title,
-          home: Homepage(),
+          home: AuthWidget(),
         ),
       ),
     );
